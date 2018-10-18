@@ -21,15 +21,23 @@ class App extends Component {
   }
 
   addToCart = (itemToAdd) => {
-    //Build Logic for this
+    this.setState(prevState => {
+      return{
+      cart: addToCart(itemToAdd, prevState.cart)
+    }
+  }, () => this.calculateTotal())
   }
 
   showCart = () => {
-    //Build Logic for this
+    this.setState({
+      showCart: toggle(this.state.showCart)
+    })
   }
 
-  calculateTotal = (cart) => {
-    //Build Logic for this
+  calculateTotal = () => {
+    this.setState({
+      total: calculateTotal(this.state.cart)
+    })
   }
 
   removeItem = (id) => {
@@ -41,6 +49,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.total, calculateTotal(this.state.cart))
     return (
       <div className="App">
         <header>
